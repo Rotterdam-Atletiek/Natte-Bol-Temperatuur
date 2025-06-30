@@ -1,0 +1,7 @@
+name = "nbt-ra"
+main = "src/index.js"
+compatibility_date = "2025-06-30"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"

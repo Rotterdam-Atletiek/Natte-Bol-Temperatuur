@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Natte Bol-temperatuur (NBT) in Rotterdam</title>
+  <link rel="icon" type="image/svg+xml" href="https://ra.nl/favicon.svg">
+  <link rel="icon" type="image/png" href="https://ra.nl/favicon.png">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: rgb(237, 247, 244);
+      color: #333;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+      color: rgb(0, 143, 102);
+    }
+    section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    .data-item {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: rgb(0, 143, 102);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .icon {
+      font-size: 1.4rem;
+    }
+    #loading {
+      text-align: center;
+      color: #888;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: rgb(0, 143, 102);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Natte Bol-temperatuur (NBT) in Rotterdam</h1>
+
+  <section>
+    <p>
+      De Natte Bol-temperatuur (NBT) is een belangrijke maat voor sporters en iedereen die buiten actief is.
+      Het combineert de luchttemperatuur en luchtvochtigheid en geeft een beter beeld van de daadwerkelijke warmtebelasting
+      op het lichaam. Bij hoge NBT-waarden is het risico op oververhitting en uitdroging groter, wat de sportprestaties negatief beïnvloedt en gezondheidsrisico’s verhoogt.
+    </p>
+    <p>
+      Het is daarom verstandig om bij hogere NBT-waarden maatregelen te nemen om de belasting te beperken.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>NBT-waarde (°C)</th>
+          <th>Advies / Maatregelen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&lt; 20</td>
+          <td>Veilige omstandigheden, normaal sporten zonder extra voorzorg.</td>
+        </tr>
+        <tr>
+          <td>20 - 24</td>
+          <td>Let op signalen van warmtebelasting, zorg voor voldoende hydratatie.</td>
+        </tr>
+        <tr>
+          <td>24 - 28</td>
+          <td>Verminder intensiteit, neem vaker pauzes en drink extra water.</td>
+        </tr>
+        <tr>
+          <td>28 - 31</td>
+          <td>Beperk zware inspanningen, vermijd zonkrachtige uren, monitor symptomen van oververhitting.</td>
+        </tr>
+        <tr>
+          <td>&gt; 31</td>
+          <td>Sterk af te raden om buiten intensief te sporten, zoek koele schaduw en zorg voor goede ventilatie.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="loading">Gegevens laden...</div>
+
+    <div id="weather-data" style="display:none;">
+      <div class="data-item" id="temp"><span class="icon">🌡️</span> Temperatuur: </div>
+      <div class="data-item" id="humidity"><span class="icon">💧</span> Luchtvochtigheid: </div>
+      <div class="data-item" id="nbt">Natte Bol-temperatuur: </div>
+    </div>
+  </section>
+
+  <script>
+    async function fetchNBT() {
+      try {
+        const response = await fetch('/calc');
+        if (!response.ok) throw new Error('Kan data niet ophalen: ' + response.status);
+        const data = await response.json();
+
+        document.getElementById('temp').textContent = `🌡️ Temperatuur: ${data.temp_celsius} °C`;
+        document.getElementById('humidity').textContent = `💧 Luchtvochtigheid: ${data.humidity} %`;
+        document.getElementById('nbt').textContent = `Natte Bol-temperatuur: ${data.nbt} °C`;
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('weather-data').style.display = 'block';
+      } catch (error) {
+        document.getElementById('loading').textContent = 'Fout bij laden van data.';
+        console.error(error);
+      }
+    }
+
+    fetchNBT();
+  </script>
+</body>
+</html>
