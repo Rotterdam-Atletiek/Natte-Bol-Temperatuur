@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,17 +17,20 @@
       color: #333;
       line-height: 1.5;
     }
+
     h1 {
       text-align: center;
       color: rgb(0, 143, 102);
     }
+
     section {
       background: white;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
       margin-top: 30px;
     }
+
     .data-item {
       margin: 10px 0;
       font-weight: bold;
@@ -36,31 +40,39 @@
       align-items: center;
       gap: 10px;
     }
+
     .icon {
       font-size: 1.4rem;
     }
+
     #loading {
       text-align: center;
       color: #888;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 15px;
     }
-    th, td {
+
+    th,
+    td {
       border: 1px solid #ccc;
       padding: 8px 12px;
       text-align: left;
     }
+
     th {
       background-color: rgb(0, 143, 102);
       color: white;
+      white-space: nowrap;
     }
   </style>
 </head>
+
 <body>
-  <h1>Natte Bol-temperatuur (NBT) in Rotterdam</h1>
+  <h1>Natte Bol-temperatuur (NBT)<br/>in Rotterdam</h1>
 
   <section>
     <p>
@@ -81,24 +93,20 @@
       </thead>
       <tbody>
         <tr>
-          <td>&lt; 20</td>
+          <td>&lt; 15</td>
           <td>Veilige omstandigheden, normaal sporten zonder extra voorzorg.</td>
         </tr>
         <tr>
-          <td>20 - 24</td>
-          <td>Let op signalen van warmtebelasting, zorg voor voldoende hydratatie.</td>
-        </tr>
-        <tr>
-          <td>24 - 28</td>
+          <td>15 - 22</td>
           <td>Verminder intensiteit, neem vaker pauzes en drink extra water.</td>
         </tr>
         <tr>
-          <td>28 - 31</td>
+          <td>22 - 23</td>
           <td>Beperk zware inspanningen, vermijd zonkrachtige uren, monitor symptomen van oververhitting.</td>
         </tr>
         <tr>
-          <td>&gt; 31</td>
-          <td>Sterk af te raden om buiten intensief te sporten, zoek koele schaduw en zorg voor goede ventilatie.</td>
+          <td>&gt; 23</td>
+          <td>Sterk af te raden om buiten intensief te sporten.</td>
         </tr>
       </tbody>
     </table>
@@ -134,4 +142,5 @@
     fetchNBT();
   </script>
 </body>
+
 </html>
